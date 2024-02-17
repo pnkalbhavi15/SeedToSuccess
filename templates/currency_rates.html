@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Rates</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Currency Exchange Rates</h1>
+    </header>
+
+    <main>
+        <form method="get" action="{{ url_for('currency_rates') }}">
+            <label for="baseCurrency">Choose Base Currency:</label>
+            <select id="baseCurrency" name="base_currency">
+                <option value="INR" {% if base_currency == 'INR' %} selected {% endif %}>INR</option>
+                <option value="USD" {% if base_currency == 'USD' %} selected {% endif %}>USD</option>
+                <option value="EUR" {% if base_currency == 'EUR' %} selected {% endif %}>EUR</option>
+                <option value="YEN" {% if base_currency == 'YEN' %} selected {% endif %}>YEN</option>
+                <option value="JPY" {% if base_currency == 'JPY' %} selected {% endif %}>JPY</option>
+                <!-- Add more options for other currencies as needed -->
+            </select>
+            <button type="submit">Get Rates</button>
+        </form>
+
+        <p>Base Currency: {{ base_currency }}</p>
+
+        <table border="1">
+            <tr>
+                <th>Currency</th>
+                <th>Exchange Rate</th>
+            </tr>
+            {% for currency, rate in rates.items() %}
+            <tr>
+                <td>{{ currency }}</td>
+                <td>{{ rate }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="{{ url_for('manage_expenses') }}">Back</a>
+    </main>
+</body>
+</html>

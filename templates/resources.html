@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+
+      #app {
+        margin: 20px auto 100px;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .tags-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .tag {
+        margin: 0 10px;
+        padding: 8px 16px;
+        font-size: 18px;
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .tag:hover {
+        background-color: #45a049;
+      }
+
+      .tag:active {
+        background-color: #3e8e41;
+      }
+
+      .policy-container,
+      .investor-container {
+        border: 1px solid #ccc;
+        margin: 0 0 20px;
+        padding: 16px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .policy-container h2,
+      .investor-container h2 {
+        margin-top: 0;
+        color: #4caf50;
+      }
+
+      .policy-container p,
+      .investor-container p {
+        margin: 10px 0;
+      }
+
+      .investor-container img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .investor-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .investor-container > div {
+        margin: 10px 0;
+      }
+
+      .investor-container img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .investor-container h2 {
+        margin: 0;
+        color: #4caf50;
+      }
+
+      .investor-container p {
+        margin: 5px 0;
+      }
+
+      .home-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 8px 16px;
+        font-size: 18px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .home-button:hover {
+        background-color: #45a049;
+      }
+
+      .home-button:active {
+        background-color: #3e8e41;
+      }
+
+      .go-back-container {
+        top: 20px;
+        left: 20px;
+        padding: 30px;
+        z-index: 999;
+        width: 200px;
+        height: 20px;
+      }
+
+      .tag.active {
+        background-color: #225724;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="go-back-container">
+      <button class="home-button" onclick="window.location.href='/terratech'">
+        Go back to home
+      </button>
+    </div>
+    <div id="app"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const appDiv = document.getElementById("app");
+
+        function Tags(setActiveSection) {
+          const container = document.createElement("div");
+          container.classList.add("tags-container");
+
+          const tags = ["policies", "loans", "investors"];
+
+          tags.forEach((tag) => {
+            const tagElement = document.createElement("div");
+            tagElement.classList.add("tag");
+            tagElement.textContent = tag.charAt(0).toUpperCase() + tag.slice(1); // Capitalize first letter
+            tagElement.dataset.section = tag; // Add data-section attribute
+            tagElement.addEventListener("click", () => setActiveSection(tag));
+            container.appendChild(tagElement);
+          });
+
+          return container;
+        }
+
+        function PolicyCard({ title, description, website }) {
+          const container = document.createElement("div");
+          container.classList.add("policy-container");
+
+          const titleElement = document.createElement("h2");
+          titleElement.textContent = title;
+          container.appendChild(titleElement);
+
+          const descriptionElement = document.createElement("p");
+          descriptionElement.textContent = description;
+          container.appendChild(descriptionElement);
+
+          if (website) {
+            const linkElement = document.createElement("a");
+            linkElement.href = website;
+            linkElement.target = "_blank";
+            linkElement.rel = "noopener noreferrer";
+            linkElement.textContent = "Visit Website";
+            container.appendChild(linkElement);
+          }
+
+          return container;
+        }
+
+        function BankCard({ title, description }) {
+          const container = document.createElement("div");
+          container.classList.add("policy-container");
+
+          const titleElement = document.createElement("h2");
+          titleElement.textContent = title;
+          container.appendChild(titleElement);
+
+          const descriptionElement = document.createElement("p");
+          descriptionElement.textContent = description;
+          container.appendChild(descriptionElement);
+
+          return container;
+        }
+
+        function InvestorCard({ name, email, phoneNumber, imageUrl }) {
+          const container = document.createElement("div");
+          container.classList.add("investor-container");
+
+          const imageDiv = document.createElement("div");
+          const imgElement = document.createElement("img");
+          imgElement.src = imageUrl;
+          imgElement.alt = name;
+          imageDiv.appendChild(imgElement);
+          container.appendChild(imageDiv);
+
+          const infoDiv = document.createElement("div");
+          const nameElement = document.createElement("h2");
+          nameElement.textContent = name;
+          infoDiv.appendChild(nameElement);
+
+          const emailElement = document.createElement("p");
+          emailElement.textContent = "Email: " + email;
+          infoDiv.appendChild(emailElement);
+
+          const phoneElement = document.createElement("p");
+          phoneElement.textContent = "Phone: " + phoneNumber;
+          infoDiv.appendChild(phoneElement);
+
+          container.appendChild(infoDiv);
+
+          return container;
+        }
+
+        function App() {
+          const appDiv = document.createElement("div");
+          const activeSection = { value: "policies" };
+          const policyDetails = [
+            {
+              title: "E-NAM (National Agriculture Market)",
+              description:
+                "A pan-India electronic trading portal to promote uniformity in agriculture marketing and ensure better price discovery through transparent auction process based on the quality of produce.",
+            },
+            {
+              title: "PMKSY (Pradhan Mantri Krishi Sinchayee Yojana)",
+              description:
+                "Aims to extend the coverage of irrigation and improve water use efficiency.",
+              website: "https://pmksy.gov.in/",
+            },
+            {
+              title: "Startup India",
+              description:
+                "Promotes entrepreneurship and innovation in the country by offering various schemes such as the Startup India Seed Fund Scheme.",
+              website:
+                "https://www.startupindia.gov.in/content/sih/en/government-schemes.html",
+            },
+            {
+              title: "MUDRA Bank",
+              description:
+                "Provides financial support to businesses, including startups, through collateral-free loans.",
+            },
+          ];
+
+          const bankDetails = [
+            {
+              title: "MUDRA Bank Loan",
+              description:
+                "MUDRA (Micro Units Development and Refinance Agency) provides loans up to Rs. 10 lakh to micro and small enterprises. The loans are categorized as Shishu, Kishor, and Tarun, based on the stage of growth and funding needs of the enterprise",
+            },
+            {
+              title: "Stand-Up India Scheme",
+              description:
+                "This scheme aims to provide bank loans between Rs. 10 lakh and Rs. 1 crore to at least one Scheduled Caste (SC) or Scheduled Tribe (ST) borrower and at least one woman borrower per bank branch for setting up a greenfield enterprise in the manufacturing, services, or trading sector",
+            },
+            {
+              title: "MSME Loan Scheme in 59 Minutes",
+              description:
+                "This scheme provides quick approval and disbursal of loans up to Rs. 1 crore for Micro, Small, and Medium Enterprises (MSMEs) through a seamless online process",
+            },
+          ];
+
+          const investorDetails = [
+            {
+              name: "May Doe",
+              email: "may789@gmail.com",
+              phoneNumber: "123-456-7890",
+              imageUrl:
+                "https://img.freepik.com/free-photo/smiley-businesswoman-posing-outdoors-with-arms-crossed-copy-space_23-2148767055.jpg?size=626&ext=jpg&ga=GA1.1.1168625217.1700125212&semt=ais",
+            },
+            {
+              name: "Rohan Mishra",
+              email: "rohan1234@gmail.com",
+              phoneNumber: "987-654-3210",
+              imageUrl:
+                "https://t4.ftcdn.net/jpg/02/97/24/51/240_F_297245133_gBPfK0h10UM3y7vfoEiBC3ZXt559KZar.jpg", // Sample image URL
+            },
+          ];
+
+          const setActiveSection = (section) => {
+            activeSection.value = section;
+            render();
+
+            // Remove 'active' class from all tags
+            document.querySelectorAll(".tag").forEach((tag) => {
+              tag.classList.remove("active");
+            });
+
+            // Add 'active' class to the clicked tag
+            const clickedTag = document.querySelector(
+              `.tag[data-section="${section}"]`
+            );
+            clickedTag.classList.add("active");
+          };
+
+          const render = () => {
+            appDiv.innerHTML = "";
+            appDiv.appendChild(Tags(setActiveSection));
+
+            switch (activeSection.value) {
+              case "policies":
+                {
+                  const policiesDiv = document.createElement("div");
+                  policiesDiv.innerHTML = "<h3>Government Policies</h3>";
+                  policyDetails.forEach((policy) => {
+                    policiesDiv.appendChild(PolicyCard(policy));
+                  });
+                  appDiv.appendChild(policiesDiv);
+                }
+                break;
+              case "loans":
+                {
+                  const loansDiv = document.createElement("div");
+                  loansDiv.innerHTML = "<h3>Bank Loans</h3>";
+                  bankDetails.forEach((bank) => {
+                    loansDiv.appendChild(BankCard(bank));
+                  });
+                  appDiv.appendChild(loansDiv);
+                }
+                break;
+              case "investors":
+                {
+                  const investorsDiv = document.createElement("div");
+                  investorsDiv.innerHTML = "<h3>Investors</h3>";
+                  investorDetails.forEach((investor) => {
+                    investorsDiv.appendChild(InvestorCard(investor));
+                  });
+                  appDiv.appendChild(investorsDiv);
+                }
+                break;
+              default:
+                break;
+            }
+          };
+
+          render();
+
+          return appDiv;
+        }
+
+        appDiv.appendChild(App());
+      });
+    </script>
+  </body>
+</html>

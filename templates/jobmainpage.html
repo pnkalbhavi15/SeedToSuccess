@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agri Consultant Job</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        padding: 20px;
+        text-align: center;
+        background-color: #4caf50;
+        color: white;
+        display: flex;
+        align-items: center;
+      }
+
+      .header-logo {
+        margin-right: 20px;
+        height: 50px;
+      }
+
+      .job-details {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 600px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .back-button {
+        background-color: #008cba;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .back-button:hover {
+        background-color: #005f6b;
+      }
+
+      h2 {
+        margin-top: 0;
+        color: #333;
+      }
+
+      h3 {
+        color: #4caf50;
+      }
+
+      p {
+        margin: 10px 0;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        class="header-logo"
+        src="{{ url_for('static', filename='images/vinayimg1.jpg') }}"
+        alt="Job Image"
+      />
+      <h1>Agri Consultant Job</h1>
+    </header>
+    <main>
+      <div class="job-details">
+        <h2>Agri Consultant</h2>
+        <p>Posted Job Count: 11</p>
+        <p>Posted Date: 01-11-2023</p>
+        <p>Open Until: 01-05-2024</p>
+        <p>Location: Thiruchirappalli, Country: India</p>
+        <p>Salary: $15,000 - $25,000</p>
+        <p>Role: Agriculture Field Officer</p>
+        <h3>Description</h3>
+        <p>
+          An agriculture consultant role with a focus on agricultural practices
+          and consulting.
+        </p>
+        <h3>Skills</h3>
+        <p>Agriculture Field Officer, Consulting, Agriculture Practices</p>
+        <button class="back-button" onclick="goBack()">Back</button>
+      </div>
+    </main>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
+  </body>
+</html>

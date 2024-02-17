@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agricultural Financial Forecast</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #ecf0f1;
+        margin: 0;
+        padding: 0;
+        color: #34495e; /* Dark grayish text */
+      }
+
+      header {
+        background-color: #4caf50;
+        color: #fff;
+        text-align: center;
+        padding: 1em;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        color: #fff;
+        margin: 0;
+      }
+
+      form {
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #2c3e50; /* Dark grayish text */
+      }
+
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #bdc3c7;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        display: inline-block;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      #powerBiReportContainer {
+        display: none;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+      }
+
+      iframe {
+        width: 100%;
+        height: 500px;
+        border: none;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #45a049;
+        margin-left: 10px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      a:hover {
+        background-color: #2d7731;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Agricultural Financial Forecast</h1>
+    </header>
+
+    <form
+      action="{{ url_for('generate_report') }}"
+      method="post"
+      onsubmit="return showReport()"
+    >
+      <label for="zone">Select Agricultural Zone:</label>
+      <select name="zone" id="zone">
+        <option value="south">South</option>
+        <option value="north">North</option>
+        <option value="east">East</option>
+        <option value="west">West</option>
+      </select>
+      <input type="submit" value="Generate Report" />
+    </form>
+
+    <div id="powerBiReportContainer">
+      <h2>Financial Analysis Report</h2>
+      <iframe
+        id="powerBiReport"
+        title="analysisF"
+        src=""
+        frameborder="0"
+        allowfullscreen="true"
+      ></iframe>
+    </div>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+
+    <script>
+      function showReport() {
+        var selectedZone = document.getElementById("zone").value;
+        var powerBiReportIframe = document.getElementById("powerBiReport");
+
+        // Update the report URLs for each agricultural zone
+        switch (selectedZone) {
+          case "south":
+            powerBiReportIframe.src =
+              "https://app.powerbi.com/reportEmbed?reportId=263d97ad-986c-42b2-8491-924d5c8ddb91&autoAuth=true&ctid=7da14864-e04c-4b62-9331-a0e8a4bebfca"; // Replace with the actual URL for the South report
+            break;
+          case "north":
+            powerBiReportIframe.src =
+              "https://app.powerbi.com/reportEmbed?reportId=263d97ad-986c-42b2-8491-924d5c8ddb91&autoAuth=true&ctid=7da14864-e04c-4b62-9331-a0e8a4bebfca"; // Replace with the actual URL for the North report
+            break;
+          case "east":
+            powerBiReportIframe.src =
+              "https://app.powerbi.com/reportEmbed?reportId=263d97ad-986c-42b2-8491-924d5c8ddb91&autoAuth=true&ctid=7da14864-e04c-4b62-9331-a0e8a4bebfca"; // Replace with the actual URL for the East report
+            break;
+          case "west":
+            powerBiReportIframe.src =
+              "https://app.powerbi.com/reportEmbed?reportId=263d97ad-986c-42b2-8491-924d5c8ddb91&autoAuth=true&ctid=7da14864-e04c-4b62-9331-a0e8a4bebfca"; // Replace with the actual URL for the West report
+            break;
+          default:
+            // Handle default case or show an error
+            break;
+        }
+
+        document.getElementById("powerBiReportContainer").style.display =
+          "block";
+        return false; // Prevent form submission
+      }
+    </script>
+  </body>
+</html>

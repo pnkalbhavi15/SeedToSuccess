@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #007bff;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="url"],
+        input[type="file"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"],
+        input[type="button"] {
+            width: calc(50% - 5px);
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mentor Application Form</h1>
+    <form method="post" enctype="multipart/form-data" onsubmit="handleSubmit()">
+        <h2><center>Personal Details</center></h2>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" value="India" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="whatsapp">Whatsapp:</label>
+        <input type="text" id="whatsapp" name="whatsapp" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <h2>Professional Details</h2>
+        <label for="linkedin_url">LinkedIn URL:</label>
+        <input type="url" id="linkedin_url" name="linkedin_url" placeholder="https://www.linkedin.com/in/yourid" required>
+
+        <label for="job_title">Job Title:</label>
+        <input type="text" id="job_title" name="job_title" required>
+
+        <label for="industry">Industry:</label>
+        <input type="text" id="industry" name="industry" required>
+
+        <h2>Mentor Information</h2>
+        <label for="mentor_bio">Mentor Bio:</label>
+        <textarea id="mentor_bio" name="mentor_bio" rows="4" required></textarea>
+
+        <label for="mentoring_specialization">Mentoring Specialization(s):</label>
+        <input type="text" id="mentoring_specialization" name="mentoring_specialization" required>
+
+        <label for="mentoring_experience">Mentoring Experience:</label>
+        <input type="text" id="mentoring_experience" name="mentoring_experience" placeholder="Example - 3 yrs" required>
+
+        <label for="virtual_mentoring_availability">Availability for Virtual Mentoring Sessions:</label>
+        <input type="text" id="virtual_mentoring_availability" name="virtual_mentoring_availability" required>
+
+        <label for="mentoring_session_time">Potential Day(s) & Time for Mentoring Session:</label>
+        <input type="text" id="mentoring_session_time" name="mentoring_session_time" placeholder="Example - Tuesday: 12pm to 2pm" required>
+
+        <label for="intro_video_url">Intro about yourself Video (if any):</label>
+        <input type="url" id="intro_video_url" name="intro_video_url" placeholder="https://www.youtube.com/embed/ckybhzSvirE">
+
+        <label for="presentation_video_url">Previous Presentation Videos (if any):</label>
+        <input type="url" id="presentation_video_url" name="presentation_video_url" placeholder="https://www.youtube.com/embed/ckybhzSvirE">
+
+        <label for="website_url">Website (if any):</label>
+        <input type="url" id="website_url" name="website_url" placeholder="https://indianstartups.com/">
+
+        <label for="published_articles_url">Published articles (if any):</label>
+        <input type="url" id="published_articles_url" name="published_articles_url" placeholder="Published Articles">
+
+        <label for="photo">Upload Photo:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required>
+
+        <label for="expertise_profile">Upload Expertise Profile / Resume:</label>
+        <input type="file" id="expertise_profile" name="expertise_profile" required>
+
+        <div class="button-container">
+            <input type="submit" value="Submit">
+            <input type="button" value="Cancel" onclick="window.close()">
+        </div>
+    </form>
+    <script>
+        function handleSubmit() {
+            // Your form submission logic goes here
+            // After the form is submitted, close the window
+            window.close();
+        }
+    </script>
+</body>
+</html>

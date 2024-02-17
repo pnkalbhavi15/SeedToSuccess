@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Managing Finances</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        margin: 20px;
+      }
+
+      h1,
+      h2 {
+        color: #2e7d32;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 16px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: transform 0.3s;
+      }
+
+      li:hover {
+        transform: scale(1.02);
+      }
+
+      a {
+        color: #2e7d32;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .page-link {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        padding: 10px 15px;
+        border-radius: 5px;
+        background-color: #2e7d32;
+        transition: background-color 0.3s;
+      }
+
+      .page-link:hover {
+        background-color: #4caf50;
+      }
+
+      .action-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .action-links a {
+        margin: 0 15px;
+      }
+
+      /* Responsive Styling */
+      @media (max-width: 600px) {
+        li {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .action-links {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .action-links a {
+          margin: 5px 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Managing Finances</h1>
+
+    <!-- Links to Other Pages -->
+    <div class="action-links">
+      <a href="{{ url_for('expense_tracker') }}" class="page-link"
+        >Add Expense</a
+      >
+      <a href="{{ url_for('budget_tracker') }}" class="page-link"
+        >Budget Tracking</a
+      >
+      <a href="{{ url_for('income_tracker') }}" class="page-link"
+        >Income Tracker</a
+      >
+      <a href="{{ url_for('financial_summary') }}" class="page-link"
+        >Financial Summary</a
+      >
+      <a href="{{ url_for('reminder') }}" class="page-link">Reminders</a>
+      <a href="{{ url_for('currency_rates') }}" class="page-link"
+        >Currency Rates</a
+      >
+    </div>
+
+    <!-- Display Expenses -->
+    <h2>Expenses</h2>
+    <ul>
+      {% for expense in expenses %}
+      <li>
+        <div>
+          {{ expense.date }} - {{ expense.amount }} - {{ expense.category }} -
+          {{ expense.description }}
+        </div>
+        <div class="action-links">
+          <a
+            href="{{ url_for('edit_expense', index=expense.id) }}"
+            class="page-link"
+            >Edit</a
+          >
+          <a
+            href="{{ url_for('delete_expense', index=loop.index0) }}"
+            onclick="return confirm('Are you sure you want to delete this expense?')"
+            class="page-link"
+            >Delete</a
+          >
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Display Income -->
+    <h2>Income</h2>
+    <ul>
+      {% for income_item in income %}
+      <li>
+        {{ income_item.source }} - {{ income_item.amount }} - {{
+        income_item.description }}
+      </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Display Budgets -->
+    <h2>Budgets</h2>
+    <ul>
+      {% for budget_item in budgets %}
+      <li>
+        <div>{{ budget_item.category }} - {{ budget_item.amount }}</div>
+        <div class="action-links">
+          <a href="{{ url_for('budget_tracker')}}" class="page-link">Edit</a>
+          <a
+            href="{{ url_for('delete_budget', index=loop.index0) }}"
+            onclick="return confirm('Are you sure you want to delete this budget?')"
+            class="page-link"
+            >Delete</a
+          >
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}" class="page-link">Back to Home</a>
+  </body>
+</html>

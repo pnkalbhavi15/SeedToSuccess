@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Income Tracker</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2 {
+        color: #388e3c;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 12px;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      li:hover {
+        transform: scale(1.02);
+      }
+
+      a {
+        color: #388e3c;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        color: #2e7d32;
+        text-decoration: underline;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #388e3c;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #388e3c;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #f9f9f9;
+      }
+
+      button {
+        background-color: #388e3c;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2e7d32;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Income Tracker</h1>
+
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+
+    <!-- Display Income -->
+    <h2>Income</h2>
+    <ul>
+      {% for income_item in income %}
+      <li>
+        <strong>{{ income_item.source }}</strong> - ${{ income_item.amount }} -
+        {{ income_item.description }}
+      </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Add Income Form -->
+    <form method="post" action="{{ url_for('add_income') }}">
+      <label for="source">Source:</label>
+      <input type="text" id="source" name="source" required /><br />
+
+      <label for="amount">Amount:</label>
+      <input
+        type="number"
+        id="amount"
+        name="amount"
+        step="0.01"
+        required
+      /><br />
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" rows="4" required></textarea
+      ><br />
+
+      <button type="submit">Add Income</button>
+    </form>
+
+    <a href="{{ url_for('manage_expenses') }}">Back</a>
+  </body>
+</html>

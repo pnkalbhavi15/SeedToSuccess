@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Success Stories</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/terra.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar-logo {
+        width: 60px; /* Adjust to your preferred width */
+        height: 60px; /* Adjust to your preferred height */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header-content">
+      <img
+        src="{{url_for('static', filename = 'images/logo1.jpg')}}"
+        class="navbar-logo"
+        alt="Logo"
+      />
+      <h3>SeedToSuccess</h3>
+      <nav>
+        <ul>
+          <li>
+            <a href="javascript:void(0);" onclick="window.location.reload();"
+              >Home</a
+            >
+          </li>
+          <li><a href="{{ url_for('Mentorship')}}">Mentorship</a></li>
+          <li><a href="{{ url_for('Networking') }}">Networking</a></li>
+          <li><a href="{{ url_for('jobmain') }}">Job opportunities </a></li>
+          <li><a href="{{ url_for('resources') }}">Financial resources </a></li>
+          <li>
+            <a href="">Analysis</a>
+            <ul class="sub-menu">
+              <li><a href="{{url_for('index')}}">Budget</a></li>
+              <li><a href="{{url_for('index_market')}}">Marketing</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="{{ url_for('logout') }}">Log Out</a>
+          </li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="content">
+        <!-- Your main content goes here -->
+      </div>
+    </header>
+
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <img
+          src="https://www.bain.com/contentassets/abc6db2a2d8b441f95772b2fa70292e1/india-rural-economy-16-9.jpg"
+          alt="Slide 1"
+        />
+        <div class="text">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde
+          incidunt, odit odio suscipit expedita perspiciatis. Deleniti, quo ea
+          laborum tempore sequi debitis labore, adipisci error voluptatum, rem
+          inventore totam. Suscipit!
+        </div>
+      </div>
+      <div class="mySlides fade">
+        <img
+          src="https://thecsrjournal.in/wp-content/uploads/2018/10/rural-women-in-India.jpg"
+          alt="Slide 2"
+        />
+        <div class="text">
+          1Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
+          ut nihil neque cum eveniet. Neque laborum magnam rerum, possimus
+          deserunt at aliquam culpa officiis, corporis accusamus soluta
+          reprehenderit! Alias, totam.
+        </div>
+      </div>
+      <div class="mySlides fade">
+        <img
+          src="https://shanmugamiasacademy.in/uploads/blogs/1655797014_rural-women-in-marigold-field-Brett-Cole.png"
+          alt="Slide 3"
+        />
+        <div class="text">
+          2Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores,
+          explicabo dolor delectus quod autem et excepturi sint molestias
+          repudiandae consequatur soluta eos illum eaque voluptas molestiae
+          tenetur sit nisi facilis?
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <!-- Button for skill test -->
+    <div style="text-align: center" class="button-container">
+      <button
+        class="home-button"
+        onclick="window.location.href='./skilltest'"
+        style="margin-top: 20px"
+      >
+        Take a Skill Test
+      </button>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; position: sticky">
+      &copy; 2024 Success Stories Inc.
+    </footer>
+
+    <script>
+      let slideIndex = 0;
+      showSlides();
+
+      function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 4000); // Change image every 4 seconds
+      }
+    </script>
+  </body>
+</html>

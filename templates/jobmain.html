@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Opportunities</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+      }
+
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .job-box {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+      }
+
+      .job-box img {
+        width: 150px;
+        height: 150px;
+        margin-right: 20px;
+        border-radius: 8px 0 0 8px;
+      }
+
+      .job-details {
+        padding: 20px;
+        flex: 1;
+      }
+
+      .job-details h2 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .job-details p {
+        margin: 5px 0;
+        color: #666;
+      }
+
+      .home-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .home-button:hover {
+        background-color: #45a049;
+      }
+
+      .home-button:active {
+        background-color: #3e8e41;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .go-back-container {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Agricultural Job Opportunities</h1>
+    </header>
+    <main>
+      <div class="job-box">
+        <img
+          src="{{ url_for('static', filename='images/vinayimg1.jpg') }}"
+          alt="Job Image"
+        />
+        <div class="job-details">
+          <h2>
+            <a
+              inline
+              style="text-decoration: none"
+              href="{{ url_for('jobmainpage') }}"
+              >Agricultural Consultant</a
+            >
+          </h2>
+          <p>Posted Date: 01-11-2023</p>
+          <p>Open Until: 01-05-2024</p>
+          <p>Location: Thiruchirappalli, Country: India</p>
+          <p>Salary: $15,000 - $25,000</p>
+          <p>Role: Agriculture Field Officer</p>
+        </div>
+      </div>
+      <div class="job-box">
+        <img
+          src="{{ url_for('static', filename='images/vinayimg2.jpg') }}"
+          alt="Job Image"
+        />
+        <div class="job-details">
+          <h2>
+            <a
+              inline
+              style="text-decoration: none"
+              href="{{ url_for('jobmainpage2') }}"
+              >Sales Executive</a
+            >
+          </h2>
+          <p>Posted Date: 01-02-2024</p>
+          <p>Open Until: 29-02-2024</p>
+          <p>Location: Tiruvallur</p>
+          <p>Salary: $15,000 - $25,000</p>
+          <p>Role: Area Sales Officer</p>
+        </div>
+      </div>
+      <div class="button-container">
+        <a href="{{ url_for('jobposting') }}" target="_blank">
+          <button class="home-button">View More</button>
+        </a>
+        <div class="go-back-container">
+          <button
+            class="home-button"
+            onclick="window.location.href='/terratech'"
+          >
+            Go back to home
+          </button>
+        </div>
+      </div>
+    </main>
+    <div id="app"></div>
+  </body>
+</html>

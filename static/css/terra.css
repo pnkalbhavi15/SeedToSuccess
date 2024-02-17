@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #1f7e22ea;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  font-size: 30px;
+  margin: 0;
+  position: relative;
+  animation: move 3s infinite;
+}
+/* Basic styling for the navigation menu */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  position: relative;
+}
+
+nav ul li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+nav ul li:hover > ul {
+  display: block;
+}
+
+/* Styling for the dropdown menu */
+nav ul ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 1000;
+}
+
+nav ul ul li {
+  width: 200px; /* Adjust width as needed */
+}
+
+nav ul ul li a {
+  padding: 10px;
+  color: #333;
+  display: block;
+  text-decoration: none;
+}
+
+nav ul ul li a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Styling for the profile icon */
+nav ul li:nth-child(3) a i {
+  margin-right: 10px;
+}
+
+/* Additional styles can be added as needed */
+
+/* Keyframe animation for moving effect */
+@keyframes move {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 20px;
+  }
+  100% {
+    left: 0;
+  }
+}
+/* Slideshow styles */
+.slideshow-container {
+  max-width: 700px;
+  position: relative;
+  margin: auto;
+  margin-top: 20px;
+}
+.mySlides {
+  display: none;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.text {
+  color: #f2f2f2;
+  background-color: rgba(111, 115, 111, 0.5);
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active {
+  background-color: #717171;
+}
+/* Fading animation */
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.section {
+  margin-bottom: 40px;
+}
+.section h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 5px;
+}
+.success-stories,
+.government-policies {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+.box {
+  background-color: #68835546;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #ccc; /* Added border */
+}
+.animated-bullet-points li {
+  position: relative;
+  list-style-type: none;
+  padding-left: 50px;
+}
+
+.animated-bullet-points li:before {
+  content: "➤"; /* Use the 👉 emoji */
+  color: #0de931;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  animation: bullet-animation 2s infinite ease-in-out alternate;
+}
+
+@keyframes bullet-animation {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 10px; /* Adjust the distance the emoji moves */
+  }
+}
+footer {
+  background-color: #1f7e22ea;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.home-button:hover {
+  background-color: #45a049;
+}
+
+.home-button:active {
+  background-color: #3e8e41;
+}

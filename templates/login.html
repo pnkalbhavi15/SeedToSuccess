@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block title %}Startup Login{% endblock %} {% block
+header %}Startup Login{% endblock %} {% block content %}
+<div class="agri-login-container">
+  <h2>Welcome, please sign in to coninue</h2>
+  <!-- Uncomment the next lines if you have a logo -->
+  <!-- <img
+    src="{{ url_for('static', filename='agri_logo.png') }}"
+    alt="Agricultural Startup Logo"
+    class="agri-logo"
+  /> -->
+
+  <form action="{{ url_for('login') }}" method="post" class="agri-login-form">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required />
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required />
+
+    <button type="submit" class="agri-login-button">Login</button>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div class="alert alert-{{ category }}">{{ message }}</div>
+  {% endfor %} {% if 'danger' in messages %}
+  <p>Not registered? <a href="{{ url_for('register') }}">Register here</a>.</p>
+  {% endif %} {% endif %} {% endwith %}
+</div>
+{% endblock %}

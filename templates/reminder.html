@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reminders</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #2e7d32;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .search-bar {
+        display: flex;
+        margin-bottom: 20px;
+      }
+
+      .search-bar input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #2e7d32;
+        border-radius: 4px;
+        margin-right: 10px;
+        box-sizing: border-box;
+      }
+
+      .search-bar button {
+        background-color: #2e7d32;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .flash-messages {
+        margin-bottom: 20px;
+        color: #d9534f;
+      }
+
+      section {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #2e7d32;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #2e7d32;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #f9f9f9;
+      }
+
+      button {
+        background-color: #2e7d32;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .reminder-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .reminder-card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: transform 0.3s;
+      }
+
+      .reminder-card:hover {
+        transform: scale(1.02);
+      }
+
+      .reminder-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #2e7d32;
+      }
+
+      .reminder-details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #555;
+      }
+
+      .reminder-priority {
+        background-color: #2e7d32;
+        color: #fff;
+        padding: 5px 8px;
+        border-radius: 4px;
+        font-size: 0.8em;
+      }
+
+      .back-to-home {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      a {
+        color: #2e7d32;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        color: #205d24;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reminders</h1>
+
+    <div class="search-bar">
+      <form method="get" action="{{ url_for('reminder') }}">
+        <input type="text" placeholder="Search reminders" name="search" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+    </div>
+
+    <section>
+      <h2>Add New Reminder:</h2>
+      <form method="post" action="{{ url_for('add_reminder') }}">
+        <label for="newReminder">New Reminder:</label>
+        <input type="text" id="newReminder" name="newReminder" required />
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate" name="dueDate" required />
+        <label for="priority">Priority:</label>
+        <select name="priority" id="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button type="submit">Add Reminder</button>
+      </form>
+    </section>
+
+    <section class="reminder-list">
+      <h2>Existing Reminders:</h2>
+      {% for reminder in reminders %}
+      <div class="reminder-card">
+        <p class="reminder-title">{{ reminder.content }}</p>
+        <div class="reminder-details">
+          <p class="reminder-due-date">Due: {{ reminder.due_date }}</p>
+          <p class="reminder-priority">Priority: {{ reminder.priority }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+
+    <div class="back-to-home">
+      <a href="{{ url_for('manage_expenses') }}">Back</a>
+    </div>
+  </body>
+</html>

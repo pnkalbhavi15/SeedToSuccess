@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Startup Mentorship</title>
+
+    <style>
+      /* CSS styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      /* Center the heading and give it a green background */
+      h1 {
+        background-color: #4caf50;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .mentor-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+      }
+      .mentor {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 45%;
+        max-width: 400px;
+        text-align: center;
+        transition: transform 0.3s ease; /* Add transition for smooth effect */
+      }
+      .mentor img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+
+      .search-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .search-container > div {
+        margin-bottom: 10px;
+      }
+
+      .search-container input[type="text"] {
+        padding: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 30%;
+        border: none;
+        border-radius: 1px;
+      }
+
+      .search-container button {
+        padding: 5px 10px; /* Adjust padding */
+        margin-top: 5px;
+        margin-bottom: 5px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .mentorbutton {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .mentorbutton:hover {
+        background-color: #45a049;
+      }
+
+      .mentorbutton:active {
+        background-color: #3e8e41;
+      }
+
+      .go-back-container {
+        top: 20px;
+        left: 20px;
+        padding: 10px;
+        z-index: 999;
+        width: 200px;
+        height: 20px;
+      }
+
+      .home-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .home-button:hover {
+        background-color: #45a049;
+      }
+
+      .home-button:active {
+        background-color: #3e8e41;
+      }
+
+      #info {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="go-back-container">
+      <button class="home-button" onclick="window.location.href='/terratech'">
+        Go back to home
+      </button>
+    </div>
+    <div id="app"></div>
+    <h1>Mentors</h1>
+    <p id="info">
+      Indian Startups warmly invites Mentors to share their experience with
+      budding entrepreneurs and newly set-in startups. We believe that mentors
+      having an experience with a startup and their specializations make the
+      perfect combination to help new founders tackle any obstacle. We welcome
+      your invaluable contribution to our entrepreneurial community of 100,000+
+      people!
+    </p>
+    <div class="search-container">
+      <div>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search by sector or experience..."
+        />
+        <button type="button" onclick="searchMentors()">Search</button>
+      </div>
+      <div>
+        <a href="{{ url_for('form') }}" target="_blank"
+          ><button class="mentorbutton">Become a Mentor</button></a
+        >
+      </div>
+    </div>
+
+    <div class="mentor-list">
+      <div class="mentor">
+        <img
+          src="{{ url_for('static', filename='images/ava-8.jpg') }}"
+          alt="Mentor 1"
+        />
+        <div>
+          <h2>Mamatha</h2>
+          <p>Startup Sector: Finance</p>
+          <p>Years of Experience: 10</p>
+          <p>Mentor Specialization: Financial Planning, Investment Strategy</p>
+          <p>Email: mentor1@example.com</p>
+          <p>Phone: +1234567890</p>
+          <p>Available Time: Monday to Friday, 9:00 AM - 5:00 PM</p>
+          <button class="mentorbutton" onclick="showProfile('mentor1')">
+            Show Profile
+          </button>
+        </div>
+      </div>
+
+      <div class="mentor">
+        <img
+          src="{{ url_for('static', filename='images/ava-9.jpg') }}"
+          alt="Mentor 2"
+        />
+        <div>
+          <h2>Sushma</h2>
+          <p>Startup Sector: Technology</p>
+          <p>Years of Experience: 8</p>
+          <p>Mentor Specialization: Software Development, IT Infrastructure</p>
+          <p>Email: mentor2@example.com</p>
+          <p>Phone: +9876543210</p>
+          <p>Available Time: Monday to Friday, 10:00 AM - 6:00 PM</p>
+          <button class="mentorbutton" onclick="showProfile('mentor2')">
+            Show Profile
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function searchMentors() {
+        var input, filter, mentors, mentor, sector, experience, i, txtValue;
+        input = document.getElementById("search-input");
+        filter = input.value.toUpperCase();
+        mentors = document.getElementsByClassName("mentor");
+
+        for (i = 0; i < mentors.length; i++) {
+          mentor = mentors[i];
+          sector = mentor.getElementsByTagName("p")[0];
+          experience = mentor.getElementsByTagName("p")[1];
+          txtValue = sector.textContent || sector.innerText;
+          txtValue += experience.textContent || experience.innerText;
+
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            mentor.style.display = "";
+          } else {
+            mentor.style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

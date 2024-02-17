@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Details</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color:green;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #startup-info {
+            margin-bottom: 40px;
+        }
+
+        #media {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #media > * {
+            flex: 1 1 calc(50% - 20px); /* Adjust width to display side by side with margin */
+            margin: 10px;
+        }
+
+        #media h2 {
+            margin-top: 0;
+        }
+
+        /* Style for enlarging images */
+        #image-gallery img {
+            width: 20%; /* Enlarge images to fill the container */
+            transition: transform 0.3s ease; /* Smooth transition effect */
+            padding: 20px;
+        }
+
+        #image-gallery img:hover {
+            transform: scale(1.2); /* Enlarge images on hover */
+        }
+
+        /* Style for image headings */
+        .image-heading {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .home-button {
+            bottom: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #45a049;
+        }
+
+        .home-button:active {
+            background-color: #3e8e41;
+        }
+        
+        .go-back-container {
+            bottom: 20px;
+            left: 20px;
+            padding: 30px; 
+            z-index: 999; 
+            width: 200px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Startup Details</h1>
+    </header>
+    <main>
+        <section id="startup-info">
+            <h2>Startup Details</h2>
+            <p><strong>Startup Name:</strong> Go green</p>
+            <p><strong>Co-founder:</strong> John Doe</p>
+            <p><strong>Location:</strong> >Mumbai, Maharashtra</p>
+            <p><strong>Phone Number:</strong> +1234567890</p>
+            <p><strong>Email:</strong> john@example.com</p>
+            <h2>Startup Idea</h2>
+            <p id="idea"> our focus is on farming and the post-harvesting process. Our agricultural practices ensure the highest quality of produce, which we use for our own business as well as source from other farmers in the area. We are passionate about sourcing and supplying the best quality ingredients to the domestic and international markets. We take pride in our ability to maintain the integrity of our produce while ensuring sustainable and ethical farming practices. Our expertise in the spices and agriculture industry has allowed us to establish strong business relationships with clients both locally and internationally. We believe in building long-term relationships with our customers by providing them with premium produce and exceptional customer service. Our mission is to become a leading name in the industry, while continuing to contribute to the agricultural sector in a meaningful way..</p>
+            <h2>Active Status</h2>
+            <p id="status">start up is active.</p>
+        </section>        
+        <h1>Images</h1>
+        <section id="media">
+           
+            <div id="image-gallery">
+            <img src="{{ url_for('static', filename='images/images2.jpg') }}" alt="Startup Image" width="500" height="250">
+            <img src="{{ url_for('static', filename='images/images3.jpg') }}" alt="Startup Image" width="500" height="250">
+                
+            </div>
+        </section>
+    </main>
+    <div class="go-back-container">
+        <button class="home-button" onclick="window.location.href='/Networking'">Go back</button>
+    </div>
+    <div id="app"></div>
+</body>
+</html>

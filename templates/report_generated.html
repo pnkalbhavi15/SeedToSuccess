@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Generated</title>
+  </head>
+  <body>
+    <h1>Report Generated Successfully</h1>
+    <p>Zone: {{ selected_zone }}</p>
+
+    <!-- Display the Power BI report based on the selected_zone -->
+    {% if selected_zone == "south" %}
+    <!-- Embed South Power BI report here -->
+    <iframe
+      title="analysisF"
+      width="1140"
+      height="541.25"
+      src="https://app.powerbi.com/reportEmbed?reportId=263d97ad-986c-42b2-8491-924d5c8ddb91&autoAuth=true&ctid=7da14864-e04c-4b62-9331-a0e8a4bebfca"
+      frameborder="0"
+      allowfullscreen="true"
+    ></iframe>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+    {% elif selected_zone == "north" %}
+    <!-- Embed North Power BI report here -->
+    <iframe
+      title="analysisF"
+      width="1140"
+      height="541.25"
+      src="https://app.powerbi.com/reportEmbed?reportId=263d97ad-986c-42b2-8491-924d5c8ddb91&autoAuth=true&ctid=7da14864-e04c-4b62-9331-a0e8a4bebfca"
+      frameborder="0"
+      allowfullscreen="true"
+    ></iframe>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+    {% elif selected_zone == "east" %}
+    <!-- Embed East Power BI report here -->
+    <iframe
+      title="analysisF"
+      width="1140"
+      height="541.25"
+      src="https://app.powerbi.com/reportEmbed?reportId=263d97ad-986c-42b2-8491-924d5c8ddb91&autoAuth=true&ctid=7da14864-e04c-4b62-9331-a0e8a4bebfca"
+      frameborder="0"
+      allowfullscreen="true"
+    ></iframe>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+    {% elif selected_zone == "west" %}
+    <!-- Embed West Power BI report here -->
+    <iframe
+      title="analysisF"
+      width="1140"
+      height="541.25"
+      src="https://app.powerbi.com/reportEmbed?reportId=263d97ad-986c-42b2-8491-924d5c8ddb91&autoAuth=true&ctid=7da14864-e04c-4b62-9331-a0e8a4bebfca"
+      frameborder="0"
+      allowfullscreen="true"
+    ></iframe>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+    {% else %}
+    <!-- Handle default case or show an error -->
+    <p>Error: Invalid zone</p>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Skills Assessment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h2, h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Startup Skills Assessment Form</h1>
+    
+    <form id="skillAssessmentForm">
+        <h2>Agricultural Skills</h2>
+        <label for="cropKnowledge">What crops are you knowledgeable about?</label>
+        <input type="text" id="cropKnowledge" name="cropKnowledge">
+        
+        <label for="livestockExperience">Do you have any experience with livestock? If yes, please specify.</label>
+        <input type="text" id="livestockExperience" name="livestockExperience">
+        
+        <label for="soilManagement">How familiar are you with soil management techniques?</label>
+        <input type="text" id="soilManagement" name="soilManagement">
+        
+        <h2>Problem-solving and Adaptability</h2>
+        <label for="pestDiseaseControl">Can you describe a successful strategy you've used for pest and disease control?</label>
+        <textarea id="pestDiseaseControl" name="pestDiseaseControl" rows="4" cols="50"></textarea>
+        
+        <label for="weatherManagement">How do you handle weather-related challenges in agricultural operations?</label>
+        <textarea id="weatherManagement" name="weatherManagement" rows="4" cols="50"></textarea>
+
+        <label for="radioPestControl">Pest Control Method:</label>
+        <br>
+        <input type="radio" id="radioPestControl1" name="radioPestControl" value="Chemical"> Chemical
+        <input type="radio" id="radioPestControl2" name="radioPestControl" value="Biological"> Biological
+        <input type="radio" id="radioPestControl3" name="radioPestControl" value="Cultural"> Cultural
+        
+        <h2>Market and Customer Understanding</h2>
+        <label for="marketAnalysis">What methods do you use to analyze market trends and demand for agricultural products?</label>
+        <textarea id="marketAnalysis" name="marketAnalysis" rows="4" cols="50"></textarea>
+        
+        <label for="customerRelations">How do you build and maintain relationships with customers in the agricultural sector?</label>
+        <textarea id="customerRelations" name="customerRelations" rows="4" cols="50"></textarea>
+        
+        <label for="marketTrendAnalysis">How do you stay updated on market trends?</label>
+        <input type="text" id="marketTrendAnalysis" name="marketTrendAnalysis">
+
+        <label for="radioMarketAnalysis">Preferred Market Analysis Method:</label>
+        <br>
+        <input type="radio" id="radioMarketAnalysis1" name="radioMarketAnalysis" value="Surveys"> Surveys
+        <input type="radio" id="radioMarketAnalysis2" name="radioMarketAnalysis" value="Data Analysis"> Data Analysis
+        <input type="radio" id="radioMarketAnalysis3" name="radioMarketAnalysis" value="Interviews"> Interviews
+        <input type="radio" id="radioMarketAnalysis4" name="radioMarketAnalysis" value="none"> None
+
+        <h2>Situation-based Questions</h2>
+        <label for="situationQuestion1">Imagine you encounter an unexpected pest infestation in one of your crops. How would you handle this situation?</label>
+        <textarea id="situationQuestion1" name="situationQuestion1" rows="4" cols="50"></textarea>
+        
+        <label for="situationQuestion2">Suppose there's an unanticipated drought affecting your region. How would you adjust your farming practices to mitigate its impact?</label>
+        <textarea id="situationQuestion2" name="situationQuestion2" rows="4" cols="50"></textarea>
+        
+        <label for="situationQuestion3">You receive feedback from customers about the quality of your produce being lower than expected. How would you address this issue?</label>
+        <textarea id="situationQuestion3" name="situationQuestion3" rows="4" cols="50"></textarea>
+        
+        <h3>Technical Expertise</h3>
+        <label for="radioCropKnowledge">Level of Crop Knowledge:</label>
+        <br>
+        <input type="radio" id="radioCropKnowledge1" name="radioCropKnowledge" value="Beginner"> Beginner
+        <input type="radio" id="radioCropKnowledge2" name="radioCropKnowledge" value="Intermediate"> Intermediate
+        <input type="radio" id="radioCropKnowledge3" name="radioCropKnowledge" value="Advanced"> Advanced
+        <input type="radio" id="radioCropKnowledge4" name="radioCropKnowledge" value="none"> None
+        
+        <br><br>
+        <label for="checkboxLivestockExperience">Livestock Experience:</label>
+        <br>
+        <input type="checkbox" id="checkboxLivestockExperience1" name="checkboxLivestockExperience" value="Cattle"> Cattle
+        <input type="checkbox" id="checkboxLivestockExperience2" name="checkboxLivestockExperience" value="Poultry"> Poultry
+        <input type="checkbox" id="checkboxLivestockExperience3" name="checkboxLivestockExperience" value="Sheep"> Sheep
+        <input type="checkbox" id="checkboxLivestockExperience4" name="checkboxLivestockExperience" value="none"> None
+        
+        <button type="submit" onclick="closeWindow()">Submit</button>
+
+
+    </form>
+</body>
+<script>
+    function closeWindow() {
+        window.close();
+    }
+</script>
+
+</html>

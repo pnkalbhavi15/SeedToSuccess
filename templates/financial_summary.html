@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Financial Reports</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2 {
+        color: #2e7d32;
+        text-align: center;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #2e7d32;
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #2e7d32;
+        color: #fff;
+      }
+
+      .chart-container {
+        margin: 10px 0;
+      }
+
+      canvas {
+        max-width: 80%;
+      }
+
+      a {
+        color: #2e7d32;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Financial Reports</h1>
+
+    <!-- Expense Summary Graph Date-wise -->
+    <h2>Expense Summary</h2>
+    <div class="chart-container">
+      <canvas id="expenseChart" height="100"></canvas>
+    </div>
+
+    <!-- Display Income Table -->
+    <h2>Income Table</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Amount</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for income_item in income %}
+        <tr>
+          <td>{{ income_item.source }}</td>
+          <td>${{ income_item.amount }}</td>
+          <td>{{ income_item.description }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Display Profit and Loss Statement -->
+    <h2>Profit and Loss Statement</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Income</th>
+          <th>Expenses</th>
+          <th>Net Income</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+        <tr>
+          <td>{{ category.name }}</td>
+          <td>${{ category.income }}</td>
+          <td>${{ category.expenses }}</td>
+          <td>${{ category.net_income }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Back to Home -->
+    <a href="{{ url_for('manage_expenses') }}">Back</a>
+
+    <!-- JavaScript to populate and update the expense chart -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var ctxExpense = document.getElementById("expenseChart").getContext("2d");
+
+        // Fetch data from the expense list
+        var expenseChartData = {
+          labels: [
+            {% for expense_item in expenses %}
+              "{{ expense_item.date }}",
+            {% endfor %}
+          ],
+          datasets: [
+            {
+              label: "Daily Expenses",
+              data: [
+                {% for expense_item in expenses %}
+                  {{ expense_item.amount }},
+                {% endfor %}
+              ],
+              backgroundColor: "rgba(255, 99, 132, 0.2)",
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        var expenseChart = new Chart(ctxExpense, {
+          type: "line",
+          data: expenseChartData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

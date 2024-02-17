@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Expense</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9; /* Light background color */
+        color: #333; /* Dark text color */
+        margin: 20px;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2 {
+        color: #2e7d32; /* Dark green heading color */
+        text-align: center;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 16px;
+      }
+
+      a {
+        color: #2e7d32; /* Dark green link color */
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff; /* White background for forms */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #2e7d32; /* Dark green label color */
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #2e7d32; /* Dark green border for input elements */
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #2e7d32; /* Dark green button background color */
+        color: #fff; /* White text color for buttons */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 20px auto 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add Expense</h1>
+
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+
+    <!-- Expense Form -->
+    <form method="post" action="{{ url_for('add_expense') }}">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" name="amount" step="0.01" required />
+
+      <label for="category">Category:</label>
+      <input type="text" id="category" name="category" required />
+
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        rows="4"
+        required
+      ></textarea>
+
+      <button type="submit">Add Expense</button>
+    </form>
+
+    <!-- Back to Home -->
+    <a href="{{ url_for('manage_expenses') }}">Back</a>
+  </body>
+</html>

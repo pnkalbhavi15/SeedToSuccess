@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Tracking</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 20px;
+      }
+
+      h1 {
+        color: #4caf50;
+        font-size: 36px;
+        padding-bottom: 10px;
+        text-align: center;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #4caf50;
+        font-weight: bold;
+      }
+
+      input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #4caf50;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+      }
+
+      li {
+        margin-bottom: 12px;
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      canvas {
+        max-width: 100%;
+        margin: 20px 0;
+      }
+
+      a {
+        color: #4caf50;
+        text-decoration: underline;
+        display: block;
+        margin-top: 20px;
+        text-align: left;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Budget Tracking</h1>
+
+    <!-- Display Flash Messages -->
+    <div id="flash-messages">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+    </div>
+
+    <!-- Add Budget Form -->
+    <form method="post" action="{{ url_for('add_budget') }}">
+      <label for="category">Category:</label>
+      <input type="text" id="category" name="category" required />
+
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" name="amount" step="0.01" required />
+
+      <button type="submit">Add Budget</button>
+    </form>
+
+    <!-- Display Budgets -->
+    <h2>Budgets</h2>
+    <ul id="budget-list">
+      {% for budget_item in budgets %}
+      <li>{{ budget_item.category }} - {{ budget_item.amount }}</li>
+      {% endfor %}
+    </ul>
+
+    <h2>Remaining Budgets</h2>
+    <ul id="remaining-budget-list">
+      {% for remaining_budget in remaining_budgets %}
+      <li>
+        {{ remaining_budget.category }} - {{ remaining_budget.remaining_budget
+        }}
+      </li>
+      {% endfor %}
+    </ul>
+
+    <canvas id="budgetChart" width="400" height="200"></canvas>
+
+    <!-- Back to Home -->
+    <a href="{{ url_for('index') }}">Back to Home</a>
+
+    <!-- JavaScript to populate and update the chart -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var ctx = document.getElementById("budgetChart").getContext("2d");
+
+        // Fetch data using AJAX
+        fetch("/get_budget_data")
+          .then((response) => response.json())
+          .then((data) => {
+            var myChart = new Chart(ctx, {
+              type: "bar",
+              data: {
+                labels: data.budgetLabels,
+                datasets: [
+                  {
+                    label: "Budget",
+                    data: data.budgetAmounts,
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                  },
+                  {
+                    label: "Expenses",
+                    data: data.expenseAmounts,
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1,
+                  },
+                ],
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              },
+            });
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      });
+    </script>
+  </body>
+</html>

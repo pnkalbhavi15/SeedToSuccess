@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Agricultural Startup{% endblock %}</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+      }
+
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      nav {
+        background-color: #2e7d32;
+        padding: 0.5rem;
+        text-align: center;
+      }
+
+      nav a {
+        color: white;
+        padding: 0.5rem;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        margin: 0 10px;
+      }
+
+      nav a:hover {
+        background-color: #388e3c;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      .flash-message {
+        color: #d32f2f;
+        background-color: #ffccbc;
+        border: 1px solid #d32f2f;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      .agri-logo {
+        max-width: 100%;
+        height: auto;
+        margin-top: 20px;
+      }
+
+      .agri-login-form {
+        margin-top: 20px;
+      }
+
+      .agri-login-button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .agri-login-button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>{% block header %}Agricultural Startup{% endblock %}</h1>
+    </header>
+    <nav>
+      {% if current_user.is_authenticated %}
+      <!-- <a href="{{ url_for('index') }}">Home</a> -->
+      <a href="{{ url_for('manage_expenses') }}">Manage Expenses</a>
+      <a href="{{ url_for('market_price_analysis') }}">Market Price Analysis</a>
+      <a href="{{ url_for('financial_forecast') }}">Financial Forecast</a>
+      <!-- <a href="{{ url_for('logout') }}">Logout</a> -->
+      {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </nav>
+    <div class="container">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="flash-message">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block title %}Dashboard - AgriHub{% endblock %} {%
+block header %}
+<div style="text-align: center; margin-bottom: 20px">
+  <h1 style="color: rgb(240, 233, 233); font-size: 24px; margin-bottom: 10px">
+    Empower your innovation journey
+  </h1>
+  <p style="color: #555; font-size: 16px">
+    Welcome to Your Personalized Dashboard
+  </p>
+</div>
+{% endblock %} {% block content %}
+<div
+  style="
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f8ea;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  "
+>
+  <h2 style="color: #2e8b57; font-size: 20px; margin-bottom: 20px">
+    Welcome to Your Dashboard
+  </h2>
+
+  <!-- User information or welcome message can be added here -->
+
+  <div style="list-style-type: none; padding: 0">
+    <ul>
+      <li style="margin-bottom: 10px">
+        <a
+          href="{{ url_for('manage_expenses') }}"
+          style="
+            text-decoration: none;
+            color: #228b22;
+            font-weight: bold;
+            transition: color 0.3s ease;
+          "
+          >Manage Expenses</a
+        >
+      </li>
+      <li style="margin-bottom: 10px">
+        <a
+          href="{{ url_for('market_price_analysis') }}"
+          style="
+            text-decoration: none;
+            color: #228b22;
+            font-weight: bold;
+            transition: color 0.3s ease;
+          "
+          >Market Price Analysis</a
+        >
+      </li>
+      <li style="margin-bottom: 10px">
+        <a
+          href="{{ url_for('financial_forecast') }}"
+          style="
+            text-decoration: none;
+            color: #228b22;
+            font-weight: bold;
+            transition: color 0.3s ease;
+          "
+          >Financial Forecast</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 20px">
+    <button
+      style="
+        padding: 10px 20px;
+        background-color: #228b22;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      "
+      onclick="window.location.href='/terratech'"
+    >
+      Go back to home
+    </button>
+  </div>
+</div>
+{% endblock %}
